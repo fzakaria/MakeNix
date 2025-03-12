@@ -2,3 +2,5 @@ result
 result-*
 src/*.o
 src/*.d
+main
+test.nix
