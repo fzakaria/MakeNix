@@ -8,7 +8,7 @@ let fs = pkgs.lib.fileset;
       fileset = fs.unions [
         ./src/{{ .SrcFile }}
         {{- range .HeaderDeps }}
-        {{ . }}
+        ./{{ . }}
         {{- end }}
       ];
     };
