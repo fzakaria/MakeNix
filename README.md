@@ -4,7 +4,12 @@
 
 This is a demonstratin of the power of _dynamic-derivations_ in Nix leveraged to build a C/C++ project via Makefile.
 
+⚠️ As of _2025-03-11_, you need to use [nix@d904921](https://github.com/NixOS/nix/commit/d904921eecbc17662fef67e8162bd3c7d1a54ce0) in order to use _dynamic-derivations_. Additionally, you need to enable `experimental-features = ["nix-command" "dynamic-derivations" "ca-derivations" "recursive-nix"]`. Here, there be dragons 🐲.
+
 ```console
+# let's do everything in /tmp/dyn-drvs as a temporary
+# nix store.
+# 
 # enter a bind mount for the temporary store
 > nix run nixpkgs#fish --store /tmp/dyn-drvs
 
