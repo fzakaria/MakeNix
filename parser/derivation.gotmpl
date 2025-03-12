@@ -1,0 +1,27 @@
+{ pkgs }:
+let fs = pkgs.lib.fileset;
+in
+[
+{{- range . }}
+  (pkgs.stdenvNoCC.mkDerivation {
+    name = "{{ .ObjFile }}";
+    src = fs.toSource {
+      root = ./src;
+      fileset = fs.unions [
+        ./src/{{ .SrcFile }}
+        {{- range .HeaderDeps }}
+        {{ . }}
+        {{- end }}
+      ];
+    };
+    nativeBuildInputs = [ pkgs.gcc ];
+    buildPhase = ''
+      ls -l
+      gcc -c {{ .SrcFile }} -o {{ .ObjFile }}
+    '';
+    installPhase = ''
+      cp {{ .ObjFile }} $out
+    '';
+  })
+{{- end }}
+]
