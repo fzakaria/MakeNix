@@ -15,7 +15,8 @@ in
       src = fs.toSource {
         root = ./.;
         fileset = fs.unions [
-          ./src
+          (fs.fromSource (lib.sources.sourceByRegex ./src [ ".*\.c$" ]))
+          (fs.fromSource (lib.sources.sourceByRegex ./src [ ".*\.h$" ]))
           ./parser
           ./Makefile
         ];
@@ -24,6 +25,8 @@ in
       buildInputs = [nix go gcc];
 
       buildPhase = ''
+        make deps
+        
         go run parser/parser.go > derivation.nix
       '';
 
