@@ -20,6 +20,8 @@ This is a demonstratin of the power of _dynamic-derivations_ in Nix leveraged to
 Hello, World!
 ```
 
+Check out [NpmNix](https://github.com/fzakaria/NpmNix) for an example of how you might apply _dynamic-derivations_ for `lang2nix` style tooling.
+
 ## Testing
 
 You can run the parser by itself to generate the Nix expression that generates all the object files.
